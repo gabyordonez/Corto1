@@ -11,6 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import corto1.AbstractFactory; 
+import corto1.FactoryProducer;
+import corto1.operaciones.Aritmetica;
+import corto1.converter.Binario;
+import corto1.converter.Converter;
+
 /**
  *
  * @author gabyordonez
@@ -29,35 +35,37 @@ public class Gui extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         
-        caja1 = new JTextField("Operacion a realizar");
-        caja1.setBounds(10, 100, 150, 30);
+        caja1 = new JTextField();
+        caja1.setBounds(10, 90, 150, 30);
 
+        caja2 = new JTextField();
+        caja2.setBounds(200, 90, 150, 30);
+        
+        caja3 = new JTextField("TOTAL: ");
+        caja3.setBounds(10, 300, 150, 30);
         
         boton1 = new JButton("Suma");
         boton1.setBounds(10, 150, 150, 30);
         
         boton2 = new JButton("Resta");
-        boton2.setBounds(10, 150, 150, 30);
+        boton2.setBounds(200, 150, 150, 30);
         
         boton3 = new JButton("Multiplicacion");
-        boton3.setBounds(10, 150, 150, 30);
+        boton3.setBounds(10, 200, 150, 30);
         
         boton4 = new JButton("Division");
-        boton4.setBounds(10, 150, 150, 30);
+        boton4.setBounds(200, 200, 150, 30);
         
         boton5 = new JButton("Binario");
-        boton5.setBounds(10, 150, 150, 30);
+        boton5.setBounds(90, 250, 150, 30);
         
-        caja2 = new JTextField("Introducir numero 1: ");
-        caja2.setBounds(10, 200, 150, 30);
-        
-        caja3 = new JTextField();
-        caja3.setBounds(10, 200, 150, 30);
         
         Container contenedor = getContentPane();
         
 
         contenedor.add(caja1);
+        contenedor.add(caja2);
+        contenedor.add(caja3);
         contenedor.add(boton1);
         contenedor.add(boton2);
         contenedor.add(boton3);
@@ -66,14 +74,70 @@ public class Gui extends JFrame{
         
         
         boton1.addActionListener(new ActionListener() {
+            private AbstractFactory Factory;
             @Override
             public void actionPerformed(ActionEvent e) {
-                   caja2.setText(caja1.getText());
+                Factory = corto1.FactoryProducer.getFactory("Aritmetica");
+                Aritmetica c = Factory.getAritmetica("suma");        
+                double a1 = Integer.parseInt(caja1.getText());
+                double b = Integer.parseInt(caja2.getText());
+                caja3.setText(c.Operar(a1, b));
+                    
+            }
+        });
+        
+           boton2.addActionListener(new ActionListener() {
+            private AbstractFactory Factory;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Factory = corto1.FactoryProducer.getFactory("Aritmetica");
+                Aritmetica c = Factory.getAritmetica("resta");        
+                double a1 = Integer.parseInt(caja1.getText());
+                double b = Integer.parseInt(caja2.getText());
+                caja3.setText(c.Operar(a1, b));
+                    
+            }
+        });
+           
+              boton1.addActionListener(new ActionListener() {
+            private AbstractFactory Factory;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Factory = corto1.FactoryProducer.getFactory("Aritmetica");
+                Aritmetica c = Factory.getAritmetica("multiplicacion");        
+                double a1 = Integer.parseInt(caja1.getText());
+                double b = Integer.parseInt(caja2.getText());
+                caja3.setText(c.Operar(a1, b));
+                    
+            }
+        });
+              
+                 boton1.addActionListener(new ActionListener() {
+            private AbstractFactory Factory;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Factory = corto1.FactoryProducer.getFactory("Aritmetica");
+                Aritmetica c = Factory.getAritmetica("division");        
+                double a1 = Integer.parseInt(caja1.getText());
+                double b = Integer.parseInt(caja2.getText());
+                caja3.setText(c.Operar(a1, b));
                     
             }
         });
        
-        setSize(300,300);
+                    boton1.addActionListener(new ActionListener() {
+            private AbstractFactory Factory;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Factory = corto1.FactoryProducer.getFactory("Converter");
+                Converter c = Factory.getConverter("binario");        
+                double a1 = Integer.parseInt(caja1.getText());
+                caja3.setText(c.Converter(a1));
+                    
+            }
+        });
+                    
+        setSize(400,400);
     }
     
     

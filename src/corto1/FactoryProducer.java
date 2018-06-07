@@ -16,9 +16,9 @@ import corto1.operaciones.FactoryAritmetica;
 public class FactoryProducer {
     public static AbstractFactory getFactory(String type){
         switch (type){
-            case "Aritmetica: ":
+            case "Aritmetica":
                 return  new FactoryAritmetica();
-            case "Converter: ":
+            case "Converter":
                 return new FactoryConverter();
         }
         return null;

@@ -11,13 +11,13 @@ import gui.Gui;
  *
  * @author uca
  */
-public class Main {
+public class corto1 {
     ///clase main
     public static void main(String[] args) {
         new Gui().setVisible(true);
         
         
-        String hola="hola mundo";
-       //System.out.println(hola.);
+        String h="Calculadofa";
+       //System.out.println(h.);
     }
 }
