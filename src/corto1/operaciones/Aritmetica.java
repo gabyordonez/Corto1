@@ -11,4 +11,6 @@ package corto1.operaciones;
  */
 public interface Aritmetica {
     double operar(double a , double b);
+
+    public String Operar(double a1, double b);
 }

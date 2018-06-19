@@ -15,6 +15,11 @@ public class Resta implements Aritmetica{
     public double operar(double a, double b) {
         return a - b;
     }
+
+    @Override
+    public String Operar(double a1, double b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
     
 }

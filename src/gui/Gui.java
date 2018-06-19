@@ -22,15 +22,19 @@ import corto1.converter.Converter;
  * @author gabyordonez
  */
 public class Gui extends JFrame{
+    AbstractFactory Factory;
 
-    private JTextField caja1, caja2, caja3;
+    private JTextField caja1, caja2, caja3, caja4;
     private JButton boton1, boton2, boton3, boton4, boton5;
     
     public Gui() {
-        super("Calculadora");
+        super();
         initComponent();
     }
 
+    /**
+     *
+     */
     public void initComponent() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -41,8 +45,13 @@ public class Gui extends JFrame{
         caja2 = new JTextField();
         caja2.setBounds(200, 90, 150, 30);
         
-        caja3 = new JTextField("TOTAL: ");
-        caja3.setBounds(10, 300, 150, 30);
+        caja3 = new JTextField("TOTAL");
+        caja3.setBounds(10, 300, 50, 30);
+        caja3.setEditable(false);
+        
+        caja4 = new JTextField();
+        caja4.setBounds(100, 300, 150, 30);
+        caja4.setEditable(false);
         
         boton1 = new JButton("Suma");
         boton1.setBounds(10, 150, 150, 30);
@@ -66,22 +75,22 @@ public class Gui extends JFrame{
         contenedor.add(caja1);
         contenedor.add(caja2);
         contenedor.add(caja3);
+        contenedor.add(caja4);
         contenedor.add(boton1);
         contenedor.add(boton2);
         contenedor.add(boton3);
         contenedor.add(boton4);
         contenedor.add(boton5);
         
-        
+     
         boton1.addActionListener(new ActionListener() {
-            private AbstractFactory Factory;
             @Override
             public void actionPerformed(ActionEvent e) {
-                Factory = corto1.FactoryProducer.getFactory("Aritmetica");
-                Aritmetica c = Factory.getAritmetica("suma");        
+                Factory = FactoryProducer.getFactory("Aritmetica");
+                Aritmetica c = Factory.getAritmetica("Suma");        
                 double a1 = Integer.parseInt(caja1.getText());
                 double b = Integer.parseInt(caja2.getText());
-                caja3.setText(c.Operar(a1, b));
+                caja4.setText(c.Operar(a1, b));
                     
             }
         });
@@ -94,7 +103,7 @@ public class Gui extends JFrame{
                 Aritmetica c = Factory.getAritmetica("resta");        
                 double a1 = Integer.parseInt(caja1.getText());
                 double b = Integer.parseInt(caja2.getText());
-                caja3.setText(c.Operar(a1, b));
+                caja4.setText(c.Operar(a1, b));
                     
             }
         });
@@ -107,7 +116,7 @@ public class Gui extends JFrame{
                 Aritmetica c = Factory.getAritmetica("multiplicacion");        
                 double a1 = Integer.parseInt(caja1.getText());
                 double b = Integer.parseInt(caja2.getText());
-                caja3.setText(c.Operar(a1, b));
+                caja4.setText(c.Operar(a1, b));
                     
             }
         });
@@ -132,7 +141,7 @@ public class Gui extends JFrame{
                 Factory = corto1.FactoryProducer.getFactory("Converter");
                 Converter c = Factory.getConverter("binario");        
                 double a1 = Integer.parseInt(caja1.getText());
-                caja3.setText(c.Converter(a1));
+                caja4.setText(c.Convertir(a1));
                     
             }
         });
@@ -142,11 +151,8 @@ public class Gui extends JFrame{
     
     
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Gui().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Gui().setVisible(true);
         });
     }
     

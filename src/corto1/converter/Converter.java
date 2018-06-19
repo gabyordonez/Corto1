@@ -11,4 +11,11 @@ package corto1.converter;
  */
 public interface Converter {
     String convertir(String fuente);
+
+    /**
+     *
+     * @param a1
+     */
+
+    public String Convertir(double a1);
 }
